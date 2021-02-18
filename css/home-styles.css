@@ -27,7 +27,11 @@ body {
     background-color: rgba(25, 0, 70, 0.877);
     color: white;
     margin: 0px;
-    padding: 60px;
+    /* padding: 60px; */
+}
+
+video {
+    width: 100%
 }
 
 ._text {
