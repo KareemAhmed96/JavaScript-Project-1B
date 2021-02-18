@@ -2,7 +2,7 @@
 async function getVideo() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("token", "9f16c116-3fe5-4619-a041-6136c00cf88e");
+    myHeaders.append("token", "631506d8-a305-4684-922d-6cfdcbe00e38");
 
     var requestOptions = {
         method: 'GET',
@@ -10,19 +10,33 @@ async function getVideo() {
         redirect: 'follow'
     };
 
-    let httpResponse = await fetch("https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/5/videos/0",
+    let videoCount = 2;
+    let urlArray = []
+
+    for(let videoId=0 ; videoId<videoCount ; videoId++) {
+        
+        let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/5/videos/${videoId}`,
         requestOptions);
 
-    responseJsonObj = await httpResponse.json();   
-    //console.log(responseJsonObj.data.url)
+        responseJsonObj = await httpResponse.json();  
+        console.log(responseJsonObj) 
+        //console.log(responseJsonObj.data.url)
 
-    //store token in local storage
-    window.localStorage.setItem("video-url", responseJsonObj.data.url)
+        //store token in local storage
+        //window.localStorage.setItem("video-url", responseJsonObj.data.url)
+
+        urlArray.push(responseJsonObj.data.url)
+        window.localStorage.setItem("video-url-array", urlArray)   
+    }
 }
 
 getVideo();
 
-let localStorageUrl = window.localStorage.getItem("video-url")
-console.log(localStorageUrl)
+let localStorageUrlArray = window.localStorage.getItem("video-url-array")
 
-document.getElementById("video-container").setAttribute("src", localStorageUrl)
+localStorageUrlArray = localStorageUrlArray.split(",")
+console.log(localStorageUrlArray[0])
+console.log(localStorageUrlArray[1])
+
+document.getElementById("video-container-1").setAttribute("src", localStorageUrlArray[0])
+document.getElementById("video-container-2").setAttribute("src", localStorageUrlArray[1])
