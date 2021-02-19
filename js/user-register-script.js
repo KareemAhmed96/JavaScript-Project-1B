@@ -17,7 +17,7 @@ function myFunction2() {
 
 }
 
-function verifyRegister() {
+async function verifyRegister() {
     var userData = {};
 
     userData.username = document.getElementById("First-name").value;
@@ -38,12 +38,23 @@ function verifyRegister() {
         method: 'POST',
         headers: myHeaders,
         body: raw,
-
         redirect: 'follow'
     };
+    let tokenarray = []
 
-    fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+
+    let httpResponse = await fetch(url, requestOptions)
+    responseJsonObj = await httpResponse.json()
+    console.log(responseJsonObj)
+    let token =  await responseJsonObj.token
+
+
+    // verifyRegister();
+    let localStorageUrlArray = window.localStorage.setItem("Token",token)
+
+    let localStoragetoken = window.localStorage.getItem("Token")
+    console.log(localStoragetoken)
+    // document.getElementById("video-container-1").setAttribute("src", localStorageUrlArray[0])
+    // document.getElementById("video-container-2").setAttribute("src", localStorageUrlArray[1])
+
 }
