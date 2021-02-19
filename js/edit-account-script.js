@@ -1,6 +1,9 @@
 var username = document.getElementById("username");
 var password = document.getElementById("password");
- async function validate() {
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json"); 
+async function validate() {
+
     if (password.value=="" || username.value=="") {
         document.getElementById("message").innerHTML = ("Password or username shouldn't be empty");
         return false;
@@ -35,33 +38,46 @@ var password = document.getElementById("password");
         return false;
     }
 
-    let loginObj = {
-        email : username.value,
-        password : password.value
-    }
+    let userName = document.getElementById("username").value
+        let userPassword = document.getElementById("password").value
+        /// Formatting the body 
+        var raw =`{"username":"${userName}","password": "${userPassword}" }`
+        // Formatting the Request Options
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+      // Getting API Response 
+      let response = await fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/5/login", requestOptions);
+      // Cast Response into JSON Object 
+      let responseJsonObj= await response.json()
+      // Printing Response 
+      console.log(responseJsonObj)
+      // Check the Response 
+      if (responseJsonObj.token){
+        // Successful Login >> Store Token In Locale Storage
+        console.log(responseJsonObj.token)
+        window.localStorage.setItem("Token",responseJsonObj.token)
+      }
+      else{
+        /// Not Authorized User Alert will Be Raised 
+        alert("You Are Not Authorized ")
+      }
     
-    let httpResponse = await fetch ("https://cryptic-headland-94862.herokuapp.com/http://anyservice.imassoft.com/:DBID/register",{
-        method:"GET",
-        headers: {
-            "content-type": "application/json"
-        },
-        body:JSON.stringify(loginObj)
-    });
-    
-    let jsonObj = await httpResponse.json();
-    console.log(jsonObj);
-    
-    if(jsonObj.token){
+    if(responseJsonObj.token){
         alert("Login successful");
     }
     
-    else if(jsonObj.error){
-        alert(jsonObj.error)
+    else if(responseJsonObj.error){
+        alert(responseJsonObj.error)
     }
     
     else{
         alert("Unknown error")
     }
     
-    return false;
 }
+    
+
