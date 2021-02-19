@@ -2,7 +2,7 @@
 async function getVideo() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("token", "631506d8-a305-4684-922d-6cfdcbe00e38");
+    myHeaders.append("token", "2f0e6687-91a5-4882-8a27-d82ceccb9b5d");
 
     var requestOptions = {
         method: 'GET',
@@ -11,7 +11,7 @@ async function getVideo() {
     };
 
     let videoCount = 2;
-    let urlArray = []
+    let urlArray = [];
 
     for(let videoId=0 ; videoId<videoCount ; videoId++) {
         
@@ -20,7 +20,6 @@ async function getVideo() {
 
         responseJsonObj = await httpResponse.json();  
         console.log(responseJsonObj) 
-        //console.log(responseJsonObj.data.url)
 
         //store token in local storage
         //window.localStorage.setItem("video-url", responseJsonObj.data.url)
