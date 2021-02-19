@@ -1,4 +1,3 @@
-
            var vid, playbtn, seekslider, curtimetext, durtimetext, mutebtn, volumeslider;
 function intializePlayer(){
   // Set object references
@@ -57,17 +56,32 @@ function setvolume(){
   vid.volume = volumeslider.value / 100;
 }
 
+async function getVideo() {
 var myHeaders = new Headers();
-myHeaders.append("token", "716ff4df-938e-413f-9deb-86ad2afd8990");
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("token", "27be4a72-6d58-44df-94e3-7fe46bcf4cbb");
 
-var requestOptions = {
+let requestOptions = {
   method: 'GET',
   headers: myHeaders,
   redirect: 'follow'
 };
 
-fetch("https://damp-headland-40243.herokuapp.com/http://anyservice.imassoft.com/5/videos/", requestOptions)
- .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+ let  videoId =0     
+let httpResponse = await fetch(`https://damp-headland-40243.herokuapp.com/http://anyservice.imassoft.com/5/videos/${videoId}`, requestOptions)
+
+        responseJsonObj = await httpResponse.json();  
+        console.log(responseJsonObj) 
+
+          
+window.localStorage.setItem("video-url", responseJsonObj.data.url)   
+    }
+ 
+
+  getVideo();
+let localStorageUrl = window.localStorage.getItem("video-url")
+
+
+
+document.getElementById("my_video").setAttribute("src", localStorageUrl)
 

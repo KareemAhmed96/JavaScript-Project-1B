@@ -2,17 +2,18 @@
 <html lang="en">
     <head>
       <meta charset="UTF-8">
+      <title>video_dashboard</title>
      <link rel="stylesheet" type="text/css" href="css/videos-dashboard-styles.css">
        </head>
   <body>  
+   <!-- video start -->
   <div id="video_player_box">
 
         <div id="video_player_box">
-            <video id="my_video" width="550" height="310" autoplay>
-                <source src="https://ia801508.us.archive.org/34/items/movie_1_202102/movie_1.mp4" >
-               <!--   <source src="https://archive.org/details/movie_1_202102" type="video/ogg" >-->
+            <video id="my_video" width="550" height="310" autoplay src="https://ia801508.us.archive.org/34/items/movie_1_202102/movie_1.mp4">  
             </video>
-            <div id="video_controls_bar">
+          
+            <div id ="video_controls_bar">
               <button id="playpausebtn">Pause</button>
               <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
               <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
@@ -25,24 +26,27 @@
 
     <!-- movies start  -->
     <br> <br> 
-    <section class="cont">
-
+    <br> <br> <br>
+    <h2>Related movies </h2>
+    <h4>You may also like</h4>
+    <div class="movies">
     <div class="row">
 
-      <div class="column">
-       <a href="display-video.html"> <img src="imgs/movie_1.jpg"> </a>
+      <div class="column" >
+       <a href="display-video.html"> <img id="movie_1" src="https://ia801401.us.archive.org/3/items/movie_3_202102/movie_1.jpg"> </a>
       </div>
 
       <div class="column">
-        <a href="display-video.html"><img src="imgs/movie_2.jpg" ></a>
+        <a href="display-video.html"><img id="movie_2" src="https://ia801401.us.archive.org/3/items/movie_3_202102/movie_2.jpg" ></a>
       </div>
 
       <div class="column">
-        <a href="display-video.html"><img src="imgs/movie_3.jpg" ></a>
+        <a href="display-video.html"><img id="movie_3"src="https://ia801401.us.archive.org/3/items/movie_3_202102/movie_3.jpg" ></a>
       </div>
 
     </div>
-    </section>
+    </div>
+
 
      <!-- movies end  -->
      <script src="js/videos-dashboard-script.js" type="text/javascript"></script>

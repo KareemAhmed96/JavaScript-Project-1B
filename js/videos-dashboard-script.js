@@ -55,3 +55,47 @@ function vidmute(){
 function setvolume(){
   vid.volume = volumeslider.value / 100;
 }
+
+async function getmovies() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("token", "27be4a72-6d58-44df-94e3-7fe46bcf4cbb");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    let moivesCount = 3;
+    let urlArray = []
+
+    for(let moivesId=0 ; moivesId<moivesCount ; moivesId++) {
+        
+        let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/5/img/${moivesId}`,requestOptions);
+        
+
+        responseJsonObj = await httpResponse.json();  
+        console.log(responseJsonObj) 
+  
+        urlArray.push(responseJsonObj.data.url)
+        window.localStorage.setItem("moives-url-array", urlArray)   
+    }
+}
+
+getmovies();
+
+let localStorageUrlArray = window.localStorage.getItem("moives-url-array")
+
+localStorageUrlArray = localStorageUrlArray.split(",")
+console.log(localStorageUrlArray[0])
+console.log(localStorageUrlArray[1])
+console.log(localStorageUrlArray[2])
+
+document.getElementById("movie_1").setAttribute("src", localStorageUrlArray[0])
+document.getElementById("movie_2").setAttribute("src", localStorageUrlArray[1])
+document.getElementById("movie_3").setAttribute("src", localStorageUrlArray[2])
+
+
+
+

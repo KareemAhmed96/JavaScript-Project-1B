@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Display video</title>
-  <link rel="stylesheet" type="text/css" href="add-video-styles.css">
+  <link rel="stylesheet" type="text/css" href="css/display-video-styles.css">
   </head>
 
 <body>
@@ -14,11 +14,11 @@
   <div id="video_player_box">
 
         <div id="video_player_box">
-            <video id="my_video" width="550" height="310" autoplay>
-                <source src="https://ia801508.us.archive.org/34/items/movie_1_202102/movie_1.mp4" >
-               <!--   <source src="https://archive.org/details/movie_1_202102" type="video/ogg" >-->
+            <video id="my_video" width="550" height="310" autoplay src="">  
             </video>
-            <div id="video_controls_bar">
+           <!--  <video id="my_video_2" width="550" height="310" autoplay src="https://ia801508.us.archive.org/34/items/movie_1_202102/movie_1.mp4">   -->
+            </video>
+            <div id ="video_controls_bar">
               <button id="playpausebtn">Pause</button>
               <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
               <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
