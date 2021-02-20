@@ -30,12 +30,11 @@ async function getVideos() {
         redirect: 'follow'
     };
 
-    let urlArray = [];
-
     // This was done because I want this function ton return more than one value
     resultObject = {
         videoCount: 10,  // View top 10: can be modified to choose how many videos you want to appear on the home page
-        foundCount: 0    // Number of videos found on the server
+        foundCount: 0,    // Number of videos found on the server
+        urlArray: []
     }
 
     for (let videoId = 0; videoId < resultObject.videoCount; videoId++) {
@@ -46,13 +45,9 @@ async function getVideos() {
         responseJsonObj = await httpResponse.json();
         console.log(responseJsonObj)
 
-        //store token in local storage
-        //window.localStorage.setItem("video-url", responseJsonObj.data.url)
-
         // Try to push to local storage and increment foundCount
         try {
-            urlArray.push(responseJsonObj.data.url)
-            window.localStorage.setItem("video-url-array", urlArray)
+            resultObject.urlArray.push(responseJsonObj.data.url)
             resultObject.foundCount++;
             console.log("TRY", resultObject)
         }
@@ -95,16 +90,8 @@ async function renderLatestVideos() {
     
     resultObject = await getVideos(); //resultObject -> contains foundCount of videos on the server
     console.log(resultObject)
-    let localStorageUrlArray = window.localStorage.getItem("video-url-array")
-
-    localStorageUrlArray = localStorageUrlArray.split(",")
-    
-    //console.log(localStorageUrlArray[0])
-    //console.log(localStorageUrlArray[1])
-    //document.getElementById("video-container-1").setAttribute("src", localStorageUrlArray[0])
-    //document.getElementById("video-container-2").setAttribute("src", localStorageUrlArray[1])
 
     for (let videoId = 0; videoId < resultObject.foundCount; videoId++) {
-        generateCard(videoId, localStorageUrlArray[videoId])
+        generateCard(videoId, resultObject.urlArray[videoId])
     }
 }
