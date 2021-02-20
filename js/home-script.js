@@ -17,7 +17,8 @@ async function login() {
 }
 
 /* Get latest videos */
-async function getVideos() {
+async function renderLatestVideos() {
+
     let dynamic_token = await login()
 
     var myHeaders = new Headers();
@@ -30,14 +31,9 @@ async function getVideos() {
         redirect: 'follow'
     };
 
-    // This was done because I want this function ton return more than one value
-    resultObject = {
-        videoCount: 10,  // View top 10: can be modified to choose how many videos you want to appear on the home page
-        foundCount: 0,    // Number of videos found on the server
-        urlArray: []
-    }
+    let videoCount = 10;  // Maximum number of recent videos
 
-    for (let videoId = 0; videoId < resultObject.videoCount; videoId++) {
+    for (let videoId = 0 ; videoId<videoCount ; videoId++) {
 
         let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/5/videos/${videoId}`,
             requestOptions);
@@ -45,26 +41,31 @@ async function getVideos() {
         responseJsonObj = await httpResponse.json();
         console.log(responseJsonObj)
 
-        // Try to push to local storage and increment foundCount
-        try {
-            resultObject.urlArray.push(responseJsonObj.data.url)
-            resultObject.foundCount++;
-            console.log("TRY", resultObject)
+        // if no error occurs -> try section will run
+        try { 
+            if (responseJsonObj.data.url) {
+                renderVideo(videoId, responseJsonObj.data.url, responseJsonObj.data.title)
+            }
         }
+        // if error happens -> catch section will run
         catch {
-            console.log("no more links")
-            console.log("CATCH", resultObject)
+            if (responseJsonObj.error) {
+                console.log("no urls found")
+                continue
+            }
+            else {
+                console.log("something else occured")
+                break
+            }
         }
     }
-
-    return resultObject
 }
 
-/* Function to generate a dynamic card into the html page */
-function generateCard(id, src) {
-    
+function renderVideo(id, src, title) {
+
     let card = `<div class="card">
                     <div class="row _thumbnail text-center"><video id="video-container-${id}" src="${src}" controls></video></div>
+                    <div class="row text-center"><h3>${title}</h3></div>
                     <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                         neque finibus, sit amet cursus est faucibus.</div>
                     <div class="btn-group thumb-btn" role="group" aria-label="...">
@@ -77,21 +78,4 @@ function generateCard(id, src) {
     cards_container = document.getElementById("cards_container")
     cards_container.innerHTML += card
     //console.log(cards_container)
-}
-
-/*
- * Function name: renderLatestVideos()
- * Description: The onload function that runs when the website loads.
- * 1- gets videos from the API
- * 2- gets stored urls from the local storage
- * 3- generates dynamic video cards to the cards container in the home.html page
- */
-async function renderLatestVideos() {
-    
-    resultObject = await getVideos(); //resultObject -> contains foundCount of videos on the server
-    console.log(resultObject)
-
-    for (let videoId = 0; videoId < resultObject.foundCount; videoId++) {
-        generateCard(videoId, resultObject.urlArray[videoId])
-    }
 }
