@@ -34,8 +34,8 @@ async function getVideos() {
 
     // This was done because I want this function ton return more than one value
     resultObject = {
-        videoCount: 10,
-        foundCount: 0
+        videoCount: 10,  // View top 10: can be modified to choose how many videos you want to appear on the home page
+        foundCount: 0    // Number of videos found on the server
     }
 
     for (let videoId = 0; videoId < resultObject.videoCount; videoId++) {
@@ -49,6 +49,7 @@ async function getVideos() {
         //store token in local storage
         //window.localStorage.setItem("video-url", responseJsonObj.data.url)
 
+        // Try to push to local storage and increment foundCount
         try {
             urlArray.push(responseJsonObj.data.url)
             window.localStorage.setItem("video-url-array", urlArray)
@@ -57,7 +58,6 @@ async function getVideos() {
         }
         catch {
             console.log("no more links")
-            resultObject.success = false
             console.log("CATCH", resultObject)
         }
     }
@@ -65,6 +65,7 @@ async function getVideos() {
     return resultObject
 }
 
+/* Function to generate a dynamic card into the html page */
 function generateCard(id, src) {
     
     let card = `<div class="card">
@@ -84,6 +85,13 @@ function generateCard(id, src) {
     document.getElementById(`video-container-${id}`).setAttribute("src", src)
 }
 
+/*
+ * Function name: renderLatestVideos()
+ * Description: The onload function that runs when the website loads.
+ * 1- gets videos from the API
+ * 2- gets stored urls from the local storage
+ * 3- generates dynamic video cards to the cards container in the home.html page
+ */
 async function renderLatestVideos() {
     
     resultObject = await getVideos();
