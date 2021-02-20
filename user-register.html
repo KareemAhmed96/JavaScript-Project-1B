@@ -12,6 +12,7 @@
     <div class="Center">
         <center>
             <div id="usermsg" style="visibility: hidden">Welcome log in</div>
+            <!-- <form class="col-sm-6" action="login.php" method="POST" onsubmit="validate() ; return false"> -->
             <div id="form">
                 username:
                 <input id="username" placeholder="username">
@@ -21,15 +22,13 @@
                 <br>
                 last name:<input id="last-name" placeholder="last-name">
                 <br>
-                Password: <input type="password"  id="pass"><br><br>
-                <br>
-                Re-Password: <input type="password" id="re-pass"><br><br>
-                <br>
+                Password: <input type="password"  id="pass"><br>
+                <br><p id = "message" style="color:red"></p>
                 <input type="checkbox" onclick="myFunction()">Show Password
                 <br>
-                Birth Date:<input id="Birth Date" placeholder="Birthday" type="date" style="width: 160px;">
+                Birth Date:<input id="Birth-Date" placeholder="Birthday" type="date" style="width: 160px;">
                 <br>
-                Phone number:<input id="Phone number" placeholder="Phone">
+                Phone number:<input id="Phone-number" placeholder="Phone">
                 <br>
                 <span>What is your gender?</span>
                 <input id="Gender" type="radio" name="gender" value="male"> Male

@@ -1,84 +1,91 @@
 // js + fetch
 function myFunction() {
     var x = document.getElementById("pass");
-    var z = document.getElementById("re-pass");
-    if (z.type === "password") {
-        z.type = "text";
-    } else {
-        z.type = "password";
-    }
     if (x.type === "password") {
         x.type = "text";
     } else {
         x.type = "password";
     }
 }
-// function myFunction2() {
-
-// }
 
 async function verifyRegister() {
+
     var userData = {};
 
     userData.username = document.getElementById("username").value;
+    userData.fname = document.getElementById("First-name").value;
+    userData.lname = document.getElementById("last-name").value;
     userData.password = document.getElementById("pass").value;
-    
-    const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/9/register';
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    userData.birthdate = document.getElementById("Birth-Date").value;
+    userData.phone = document.getElementById("Phone-number").value;
+    userData.Gender = document.getElementById("Gender").value;
+    userData.userType = "regular-user"
 
-    var raw = JSON.stringify(userData);
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+    let result = validate(userData);
+    if (result == true) {
 
-    let httpResponse = await fetch(url, requestOptions)
-    responseJsonObj = await httpResponse.json()
-    console.log(responseJsonObj)
-    let token = await responseJsonObj.token
 
-    // local storage;
-    window.localStorage.setItem("Token", token)
-    console.log(responseJsonObj.id)
-   //login request to get id
-    id = login()
-    addDatatoDB(id) 
+        const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/5/register';
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify(userData);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        let httpResponse = await fetch(url, requestOptions)
+        responseJsonObj = await httpResponse.json()
+        console.log(responseJsonObj)
+        let token = await responseJsonObj.token
+
+        // local storage;
+        window.localStorage.setItem("Token", token)
+        console.log(responseJsonObj.id)
+    }
+    else {
+        document.getElementById("message").innerHTML = ("invalid Data");
+    }
 }
 
-async function addDatatoDB(id) {
-    var useradd = {};
-    useradd.username = document.getElementById("username").value;
-    useradd.fname = document.getElementById("First-name").value;
-    useradd.lname = document.getElementById("last-name").value;
-    useradd.password = document.getElementById("pass").value;
-    useradd.repassword = document.getElementById("re-pass").value;
-    useradd.birthdate = document.getElementById("Birth Date").value;
-    useradd.phone = document.getElementById("Phone number").value;
-    useradd.Gender = document.getElementById("Gender").value;
-    useradd.regId = id;
+function validate(userData) {
 
-    const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/9/users';
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    if (userData.password == "" || userData.username == "") {
+        document.getElementById("message").innerHTML = ("Password or username shouldn't be empty");
+        return false;
+    }
 
-    var raw = JSON.stringify(useradd);
+    var numbers = /[0-9]/g;
+    if (!userData.password.match(numbers)) {
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+        document.getElementById("message").innerHTML = ("Password should contain at least one number");
+        return false;
+    }
 
-    let httpResponse = await fetch(url, requestOptions)
-    responseJsonObj = await httpResponse.json()
-    console.log(responseJsonObj)
-    let localStoragetoken = window.localStorage.getItem("Token")
+
+    var upperCaseLetters = /[A-Z]/g;
+    if (!userData.password.match(upperCaseLetters)) {
+
+        document.getElementById("message").innerHTML = ("Password should contain at least one upper case character");
+        return false;
+    }
+
+
+    var lowerCaseLetters = /[a-z]/g;
+    if (!userData.password.match(lowerCaseLetters)) {
+
+        document.getElementById("message").innerHTML = ("Password should contain at least one lower case character");
+        return false;
+    }
+
+    if (userData.password.length < 8) {
+        document.getElementById("message").innerHTML = ("Password should be at least 8 characters");
+        return false;
+    }
+    return true;
 }
-   function login(){
-
-   }
