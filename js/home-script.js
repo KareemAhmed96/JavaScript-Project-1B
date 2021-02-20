@@ -17,7 +17,7 @@ async function login() {
 }
 
 /* Get latest videos */
-async function getVideo() {
+async function getVideos() {
     let dynamic_token = await login()
 
     var myHeaders = new Headers();
@@ -30,10 +30,15 @@ async function getVideo() {
         redirect: 'follow'
     };
 
-    let videoCount = 2;
     let urlArray = [];
 
-    for (let videoId = 0; videoId < videoCount; videoId++) {
+    // This was done because I want this function ton return more than one value
+    resultObject = {
+        videoCount: 10,
+        foundCount: 0
+    }
+
+    for (let videoId = 0; videoId < resultObject.videoCount; videoId++) {
 
         let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/5/videos/${videoId}`,
             requestOptions);
@@ -44,21 +49,55 @@ async function getVideo() {
         //store token in local storage
         //window.localStorage.setItem("video-url", responseJsonObj.data.url)
 
-        urlArray.push(responseJsonObj.data.url)
-        window.localStorage.setItem("video-url-array", urlArray)
+        try {
+            urlArray.push(responseJsonObj.data.url)
+            window.localStorage.setItem("video-url-array", urlArray)
+            resultObject.foundCount++;
+            console.log("TRY", resultObject)
+        }
+        catch {
+            console.log("no more links")
+            resultObject.success = false
+            console.log("CATCH", resultObject)
+        }
     }
+
+    return resultObject
+}
+
+function generateCard(id, src) {
+    
+    let card = `<div class="card">
+                    <div class="row _thumbnail text-center"><video id="video-container-${id}" src="${src}" controls></video></div>
+                    <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
+                        neque finibus, sit amet cursus est faucibus.</div>
+                    <div class="btn-group thumb-btn" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">View</button>
+                        <button type="button" class="btn btn-default">Star</button>
+                    </div>
+                    <span class="minutes">90 mins</span>
+                </div>`
+    
+    cards_container = document.getElementById("cards_container")
+    cards_container.innerHTML += card
+    //console.log(cards_container)
+    document.getElementById(`video-container-${id}`).setAttribute("src", src)
 }
 
 async function renderLatestVideos() {
     
-    await getVideo();
-
+    resultObject = await getVideos();
+    console.log(resultObject)
     let localStorageUrlArray = window.localStorage.getItem("video-url-array")
 
     localStorageUrlArray = localStorageUrlArray.split(",")
-    console.log(localStorageUrlArray[0])
-    console.log(localStorageUrlArray[1])
+    
+    //console.log(localStorageUrlArray[0])
+    //console.log(localStorageUrlArray[1])
+    //document.getElementById("video-container-1").setAttribute("src", localStorageUrlArray[0])
+    //document.getElementById("video-container-2").setAttribute("src", localStorageUrlArray[1])
 
-    document.getElementById("video-container-1").setAttribute("src", localStorageUrlArray[0])
-    document.getElementById("video-container-2").setAttribute("src", localStorageUrlArray[1])
+    for (let videoId = 0; videoId < resultObject.foundCount; videoId++) {
+        generateCard(videoId, localStorageUrlArray[videoId])
+    }
 }
