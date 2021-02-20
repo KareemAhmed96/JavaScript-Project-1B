@@ -61,13 +61,10 @@ async function validate() {
         console.log(responseJsonObj.token)
         window.localStorage.setItem("Token",responseJsonObj.token)
       }
-      else{
-        /// Not Authorized User Alert will Be Raised 
-        alert("You Are Not Authorized ")
-      }
+     
     
     if(responseJsonObj.token){
-        alert("Login successful");
+        alert("Data changed successfully");
     }
     
     else if(responseJsonObj.error){
