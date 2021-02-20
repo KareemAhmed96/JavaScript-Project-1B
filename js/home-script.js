@@ -82,7 +82,6 @@ function generateCard(id, src) {
     cards_container = document.getElementById("cards_container")
     cards_container.innerHTML += card
     //console.log(cards_container)
-    document.getElementById(`video-container-${id}`).setAttribute("src", src)
 }
 
 /*
@@ -94,7 +93,7 @@ function generateCard(id, src) {
  */
 async function renderLatestVideos() {
     
-    resultObject = await getVideos();
+    resultObject = await getVideos(); //resultObject -> contains foundCount of videos on the server
     console.log(resultObject)
     let localStorageUrlArray = window.localStorage.getItem("video-url-array")
 
