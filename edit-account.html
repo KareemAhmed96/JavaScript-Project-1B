@@ -14,7 +14,7 @@
     
     
 </head>
-<body style="height: 2000px;">
+<body style="height: 2000px;" onload="loadData()">
     
     <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top" style="background-color: rgba(25, 0, 70, 0.877);">
         <div class="container-fluid">
@@ -40,7 +40,7 @@
     </nav>
     <div class = "col-sm-12 text-center">
         <div class="col-sm-3"></div>
-        <form class="col-sm-6" action="login.php" method="POST" onsubmit="validate() ; return false">
+        <div class="col-sm-6" >
             <div class="page-header">
                 <h1>Edit account</h1>
             </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group" >
               <label for="dob">Date of birth</label>
-              <input type="date" class="form-control" id="dob">
+              <input type="text" class="form-control" id="dob">
           </div>
             <div class="form-group" >
             <label for="username">New username</label>
@@ -62,12 +62,11 @@
             </div>
             <div class="form-group">
             <label for="password">New password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="text" class="form-control" id="password" placeholder="Password">
            <br> <p id = "message" style="color:red"></p>
             </div>
-            <button type="submit" class="btn btn-success">Confirm</button>
-        </form>
+            <button class="btn btn-success" onclick="verifyRegister()">Confirm</button>
+        </div>
     </div>
     <script src="./js/edit-account-script.js"></script>
-  
 </body>
