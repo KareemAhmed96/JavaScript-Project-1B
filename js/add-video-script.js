@@ -13,6 +13,7 @@ fetchAdd = async (videoObj) =>{
     };
     let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/`
     await fetch(url, requestOptions);
+    location.reload()
 }
 
 addVideo = () =>{

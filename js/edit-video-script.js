@@ -2,6 +2,8 @@ let getVideos = async() => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("token", "b52c5e48-1279-47e6-a2a7-501ed3a1f2e0");
+    // window.localStorage.setItem("Token",responseJsonObj.token)
+    // let token = localStorage.getItem('Token');
 
     // let uurl = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/`
     // let method = 'GET'
@@ -20,7 +22,6 @@ let getVideos = async() => {
     
 }
 displayContent = (videoObj) => {
-    console.log(videoObj)
     videoObj.forEach(element => {
 
         let table = document.getElementById('videos')
@@ -33,7 +34,7 @@ displayContent = (videoObj) => {
 
         vidURL.innerHTML = element.url.toString()
         vidTitle.innerHTML = element.title
-        vidIndex.innerHTML = element.id
+        vidIndex.innerHTML = row.rowIndex
 
         let aTag = document.createElement('a');
         aTag.setAttribute('type', "button");
@@ -72,6 +73,7 @@ fetchRequest = async (videoObj, index) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("token", "b52c5e48-1279-47e6-a2a7-501ed3a1f2e0");
+        // let token = localStorage.getItem('Token');
 
     var requestOptions = {
         method: 'POST',
@@ -79,6 +81,7 @@ fetchRequest = async (videoObj, index) => {
         body: reqObj,
         redirect: 'follow'
     };
+    console.log(typeof(index))
     let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/${index}`
     let httpResponse = await fetch(url, requestOptions);
     responseJsonObj = await httpResponse.json();
