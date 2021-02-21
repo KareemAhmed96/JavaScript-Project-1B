@@ -1,11 +1,14 @@
+token = localStorage.getItem('token');
+
 let getVideos = async() => {
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("token", "b52c5e48-1279-47e6-a2a7-501ed3a1f2e0");
+    myHeaders.append("token", token);
     // window.localStorage.setItem("Token",responseJsonObj.token)
     // let token = localStorage.getItem('Token');
 
-    // let uurl = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/`
+    // let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/`
     // let method = 'GET'
 
     var requestOptions = {
@@ -13,12 +16,12 @@ let getVideos = async() => {
         headers: myHeaders,
         redirect: 'follow'
     };
-    let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/`,
+    let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/`,
         requestOptions);
 
     responseJsonObj = await httpResponse.json();
     displayContent(responseJsonObj)
-    // await fetchRequest(uurl, method)
+    // await fetchRequest(url, method)
     
 }
 displayContent = (videoObj) => {
@@ -72,7 +75,7 @@ fetchRequest = async (videoObj, index) => {
     reqObj = JSON.stringify(videoObj)
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("token", "b52c5e48-1279-47e6-a2a7-501ed3a1f2e0");
+    myHeaders.append("token", token);
         // let token = localStorage.getItem('Token');
 
     var requestOptions = {
@@ -82,8 +85,8 @@ fetchRequest = async (videoObj, index) => {
         redirect: 'follow'
     };
     console.log(typeof(index))
-    let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/6/videos/${index}`
+    let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/${index}`
     let httpResponse = await fetch(url, requestOptions);
     responseJsonObj = await httpResponse.json();
-    location.reload()
+    //location.reload()
 }

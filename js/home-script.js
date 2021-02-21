@@ -138,9 +138,9 @@ let userNavBar = [
 let adminNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
     `<li><a href="#">Videos Dashboard</a></li>`,
-    `<li><a href="#">Edit Account Details</a></li>`,
-    `<li><a href="#">Add Video</a></li>`,
-    `<li><a href="#">Edit Video</a></li>`,
+    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
+    `<li><a href="add-video.html">Add Video</a></li>`,
+    `<li><a href="edit-video.html">Edit Video</a></li>`,
     `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
