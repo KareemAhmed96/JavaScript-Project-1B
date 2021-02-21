@@ -2,7 +2,7 @@
 async function login() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({ "username": "ahmed", "password": "123" });
+    var raw = JSON.stringify({ "username": "kareemadmindb3", "password": "1234" });
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
@@ -39,12 +39,12 @@ async function renderLatestVideos() {
             requestOptions);
 
         responseJsonObj = await httpResponse.json();
-        console.log(responseJsonObj)
+        console.log(responseJsonObj.data)
 
         // if no error occurs -> try section will run
         try { 
-            if (responseJsonObj.data.url) {
-                renderVideo(videoId, responseJsonObj.data.url, responseJsonObj.data.title)
+            if (responseJsonObj.data) {
+                renderVideo(videoId, responseJsonObj.data.imgUrl, responseJsonObj.data.title)
             }
         }
         // if error happens -> catch section will run
@@ -64,7 +64,7 @@ async function renderLatestVideos() {
 function renderVideo(id, src, title) {
 
     let card = `<div class="card" onclick="reply_click()">
-                        <div class="row _thumbnail text-center"><video id="${id}" src="${src}" controls></video></div>
+                        <div class="row _thumbnail text-center"><img id="${id}" src="${src}"></div>
                         <div class="row text-center"><h3>${title}</h3></div>
                         <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                             neque finibus, sit amet cursus est faucibus.</div>
@@ -83,6 +83,7 @@ function renderVideo(id, src, title) {
     //console.log(cards_container)
 }
 
+//Event listener
 function reply_click() {
     //console.log(event.target.id)
     return event.target.id
@@ -94,3 +95,67 @@ $('#cards_container').on('click', '.card', function(){
     video_id = reply_click()
     window.localStorage.setItem("clicked-video", video_id)
 });
+
+/* FIRST CODE TO RUN BELOW HERE */
+/* **************************** */
+
+/* Dynamic Navbar */
+let anyoneNavBar = [
+    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
+    `<li><a href="user-login.html">User Login</a></li>`,
+    `<li><a href="#">User Register</a></li>`,
+    `<li><a href="admin-login.html">Admin Login</a></li>`
+]
+
+let userNavBar = [
+    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="#">Videos Dashboard</a></li>`,
+    `<li><a href="#">Edit Account Details</a></li>`,
+    `<li><a href="#">Logout</a></li>`
+]
+
+let adminNavBar = [
+    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="#">Videos Dashboard</a></li>`,
+    `<li><a href="#">Edit Account Details</a></li>`,
+    `<li><a href="#">Add Video</a></li>`,
+    `<li><a href="#">Edit Video</a></li>`,
+    `<li><a href="#">Logout</a></li>`
+]
+
+//Check for token (logged in or not), will be handled in other pages to restrict access
+let token = window.localStorage.getItem("token")
+
+/* user-status will be used later to view or un-view navbar elements*/
+/* user-status && token -> logged in */
+
+//Get user-status from local storage
+let userStatus = window.localStorage.getItem("user-status")
+console.log(userStatus)
+
+//Current user navbar
+let currentUserNavBar = anyoneNavBar
+
+//check and assign
+if (userStatus == null) {
+    //create user-status in local storage and add "anyone" to it
+    window.localStorage.setItem("user-status", "anyone")
+}
+else if (userStatus == "anyone") {        //should be changed to anyone after Logout
+    currentUserNavBar = anyoneNavBar
+}
+else if (userStatus == "logged-in-user" && token != null) { //TEST
+    currentUserNavBar = userNavBar
+}
+else if (userStatus == "logged-in-admin" && token != null) { //TEST
+    currentUserNavBar = adminNavBar
+}
+else {
+    // this will happen when user refreshes while not logged in
+    userStatus = window.localStorage.getItem("user-status")
+    console.log(userStatus)
+}
+
+for(let i=0 ; i<currentUserNavBar.length ; i++) {
+    document.getElementById("navbar-container").innerHTML += currentUserNavBar[i]
+}
