@@ -4,11 +4,11 @@ async function login() {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  /// Getting User Input
+  // Getting User Input
   let userName = document.getElementById("user").value
   let userPassword = document.getElementById("pass").value
 
-  /// Formatting the body 
+  // Formatting the body 
   var raw = `{"username":"${userName}","password": "${userPassword}" }`
 
   // Formatting the Request Options
@@ -35,6 +35,7 @@ async function login() {
     console.log(responseJsonObj.token)
     window.localStorage.setItem("token", responseJsonObj.token)
     window.localStorage.setItem("user-status", "logged-in-user")
+    window.localStorage.setItem("user_id", responseJsonObj.data.id)
     // Simulate a mouse click:
     window.location.href = "home.html";
 
@@ -42,7 +43,7 @@ async function login() {
     // window.location.replace("home.html");
   }
   else {
-    /// Not Authorized User Alert will Be Raised 
+    // Not Authorized User Alert will Be Raised 
     alert("You Are Not Authorized ")
   }
 }

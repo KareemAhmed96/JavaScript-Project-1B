@@ -20,7 +20,6 @@ async function verifyRegister() {
     userData.gender = document.getElementById("Gender").value;
     userData.userType = "regular-user"
 
-
     let result = validate(userData);
     if (result == true) {
 

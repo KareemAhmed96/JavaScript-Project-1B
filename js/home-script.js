@@ -131,7 +131,7 @@ let anyoneNavBar = [
 let userNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
     `<li><a href="#">Videos Dashboard</a></li>`,
-    `<li><a href="#">Edit Account Details</a></li>`,
+    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
     `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
