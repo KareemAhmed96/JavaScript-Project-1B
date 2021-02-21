@@ -1,3 +1,24 @@
+async function logout(){
+    var myHeaders=new  Headers()
+    myHeaders.append("Content-Type","application/json");
+    let token=localStorage.getItem("token")
+    myHeaders.append("token", token)
+
+    var requestOptions={
+        method:'GET',
+        headers:myHeaders,
+        redirect:'follow'
+    }
+    response=await  fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/logout",requestOptions)
+    responseObj = await response.json()
+    console.log(responseObj)
+    //Remove token
+    window.localStorage.removeItem("token")
+    //Change status to anyone
+    window.localStorage.setItem("user-status", "anyone")
+    window.location.replace("home.html");
+}
+
 /* Login function to get a new Token */
 async function login() {
     var myHeaders = new Headers();
@@ -103,7 +124,7 @@ $('#cards_container').on('click', '.card', function(){
 let anyoneNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
     `<li><a href="user-login.html">User Login</a></li>`,
-    `<li><a href="#">User Register</a></li>`,
+    `<li><a href="user-register.html">User Register</a></li>`,
     `<li><a href="admin-login.html">Admin Login</a></li>`
 ]
 
@@ -111,7 +132,7 @@ let userNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
     `<li><a href="#">Videos Dashboard</a></li>`,
     `<li><a href="#">Edit Account Details</a></li>`,
-    `<li><a href="#">Logout</a></li>`
+    `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
 let adminNavBar = [
@@ -120,7 +141,7 @@ let adminNavBar = [
     `<li><a href="#">Edit Account Details</a></li>`,
     `<li><a href="#">Add Video</a></li>`,
     `<li><a href="#">Edit Video</a></li>`,
-    `<li><a href="#">Logout</a></li>`
+    `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
 //Check for token (logged in or not), will be handled in other pages to restrict access

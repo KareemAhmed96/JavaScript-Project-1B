@@ -1,5 +1,4 @@
-// js + fetch
-function myFunction() {
+function showHideToggle() {
     var x = document.getElementById("pass");
     if (x.type === "password") {
         x.type = "text";
@@ -16,17 +15,16 @@ async function verifyRegister() {
     userData.fname = document.getElementById("First-name").value;
     userData.lname = document.getElementById("last-name").value;
     userData.password = document.getElementById("pass").value;
-    userData.birthdate = document.getElementById("Birth-Date").value;
+    userData.dob = document.getElementById("Birth-Date").value;
     userData.phone = document.getElementById("Phone-number").value;
-    userData.Gender = document.getElementById("Gender").value;
+    userData.gender = document.getElementById("Gender").value;
     userData.userType = "regular-user"
 
 
     let result = validate(userData);
     if (result == true) {
 
-
-        const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/5/register';
+        const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/3/register';
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -42,14 +40,13 @@ async function verifyRegister() {
         let httpResponse = await fetch(url, requestOptions)
         responseJsonObj = await httpResponse.json()
         console.log(responseJsonObj)
-        let token = await responseJsonObj.token
 
-        // local storage;
-        window.localStorage.setItem("Token", token)
-        console.log(responseJsonObj.id)
+        if(responseJsonObj.success) {
+            window.location.replace("user-login.html");
+        }
     }
     else {
-        document.getElementById("message").innerHTML = ("invalid Data");
+        //document.getElementById("message").innerHTML = ("invalid Data");
     }
 }
 
