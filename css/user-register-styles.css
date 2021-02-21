@@ -1,0 +1,38 @@
+.Center {
+    margin: 500 auto;
+    margin-top: 20;
+    width: 500px;
+    height: 275px;
+    background-color: white;
+    box-shadow: 0 0 15px grey;
+}
+
+/* .square-container {
+                padding: 200px;
+            } */
+
+input {
+    background-color: white;
+    border-color: grey;
+    box-shadow: 0 0 5px grey;
+    /* margin: 10;
+                padding: 10; */
+}
+
+button {
+    background-color: green;
+    font-family: Arial;
+    color: white;
+    border-color: grey;
+    box-shadow: 0 0 10px grey;
+    /* padding-right: 200px;
+                margin: 10;
+                padding: 10; */
+}
+
+a {
+    color: green;
+    text-decoration: none;
+    /* margin: 10;
+                padding: 10; */
+}
