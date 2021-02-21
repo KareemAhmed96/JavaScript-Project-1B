@@ -14,7 +14,7 @@
     
     
 </head>
-<body style="height: 2000px;">
+<body style="height: 2000px;" onload="loadData()">
     
     <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top" style="background-color: rgba(25, 0, 70, 0.877);">
         <div class="container-fluid">
@@ -32,37 +32,48 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link2</a></li>
+              <li><a href="home.html">Home</a></li>
+              <li><a href="videos-dashboard.html">Video dashbord</a></li>
+              <li class="active"><a href="edit-account.html">Edit account</a></li>
+              <li style="left: 200%;"><a href="#">Logout</a></li>
             </ul>
           </div>
     </nav>
     <div class = "col-sm-12 text-center">
         <div class="col-sm-3"></div>
-        <form class="col-sm-6" action="login.php" method="POST" onsubmit="validate() ; return false">
+        <div class="col-sm-6" >
             <div class="page-header">
                 <h1>Edit account</h1>
             </div>
             <div class="form-group" >
                 <label for="fname">First name</label>
-                <input type="text" class="form-control" id="fname" placeholder="First name">
+                <input type="text" class="form-control" id="fname" placeholder="Loading...">
             </div>
             <div class="form-group" >
                 <label for="lname">Last name</label>
-                <input type="text" class="form-control" id="lname" placeholder="Last name">
+                <input type="text" class="form-control" id="lname" placeholder="Loading...">
             </div>
             <div class="form-group" >
+              <label for="dob">Date of birth</label>
+              <input type="text" class="form-control" id="dob">
+          </div>
+            <div class="form-group" >
             <label for="username">New username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username">
+            <input type="text" class="form-control" id="username" placeholder="Loading...">
             </div>
             <div class="form-group">
             <label for="password">New password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="text" class="form-control" id="password" placeholder="Password">
            <br> <p id = "message" style="color:red"></p>
             </div>
-            <button type="submit" class="btn btn-success">Confirm</button>
-        </form>
+            <div class="form-group">
+              <label for="phNum">Phone number</label>
+              <input type="text" class="form-control" id="phNum" placeholder="Loading...">
+             <br> <p id = "message" style="color:red"></p>
+              </div>
+                </div>
+            <button class="btn btn-success" onclick="verifyRegister()">Confirm</button>
+        </div>
     </div>
     <script src="./js/edit-account-script.js"></script>
   
