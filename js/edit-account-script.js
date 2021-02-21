@@ -14,6 +14,8 @@ async function loadData(){
     document.getElementById("dob").value = userInput.dob;
     document.getElementById("username").value = userInput.username;
     document.getElementById("password").value = "";
+    document.getElementById("phNum").value = userInput.phNum;
+
 }
 
 async function verifyRegister() {
@@ -23,8 +25,7 @@ async function verifyRegister() {
     userInput.dob = document.getElementById("dob").value.toString();
     userInput.username = document.getElementById("username").value;
     userInput.password = document.getElementById("password").value;
-
-    
+    userInput.phNum = document.getElementById("phNum").value;
     
 
     let result = validate();
