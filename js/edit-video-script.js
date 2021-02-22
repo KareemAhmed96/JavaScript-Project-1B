@@ -81,7 +81,13 @@ editVideo = (index) => {
         'imgUrl': newImgUrl,
         'title': newVidTitle
     }
-    fetchRequest(editedObj, index)
+    if(newVidUrl != "" && newImgUrl != "" && newVidTitle != "") {
+        fetchRequest(editedObj, index)
+        alert("Edited Successfully")
+    }
+    else {
+        alert("You have to fill all fields")
+    }
 }
 
 fetchRequest = async (videoObj, index) => {
