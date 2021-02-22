@@ -1,0 +1,4 @@
+div#video_player_box{ width:550px;height: 310px; background:#000; margin:10px auto; margin-bottom: 50px;}
+div#video_controls_bar{ background: #333; padding:10px; color:#CCC;}
+input#seekslider{ width:180px; }
+input#volumeslider{ width: 80px;}
