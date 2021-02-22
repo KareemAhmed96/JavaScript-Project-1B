@@ -32,10 +32,13 @@ displayContent = (videoObj) => {
         row.className = element.id
         let vidIndex = row.insertCell(0)
         let vidURL = row.insertCell(1)
-        let vidTitle = row.insertCell(2)
-        let vidAction = row.insertCell(3)
+        let imgUrl = row.insertCell(2)
+        let vidTitle = row.insertCell(3)
+        let vidAction = row.insertCell(4)
+        
 
         vidURL.innerHTML = element.url.toString()
+        imgUrl.innerHTML = element.imgUrl
         vidTitle.innerHTML = element.title
         vidIndex.innerHTML = row.rowIndex
 
@@ -51,21 +54,31 @@ displayContent = (videoObj) => {
 convert = (index) => {
 
     let rowToEdit = document.getElementsByClassName(index.toString())
-    let URLcell = "<input id='newURL' placeholder='place your url: '>"
-    let titleCell = "<input id='newTitle' placeholder='place your url: '>"
+    let URLcell = "<input id='newURL' placeholder='place your url: ' required>"
+    let titleCell = "<input id='newTitle' placeholder='place your url: ' required>"
+    let imgUrlCell = "<input id='imgUrl' placeholder='place your url: ' required>"
     let submitButton = `<button class="btn btn-outline-success" onclick="editVideo(${index})" type="button">submit</button>`
     rowToEdit[0].childNodes[1].innerHTML = URLcell
     rowToEdit[0].cells[1].className = 'url'
-    rowToEdit[0].childNodes[2].innerHTML = titleCell
-    rowToEdit[0].cells[2].className = 'title'
-    rowToEdit[0].cells[3].innerHTML = submitButton
+
+    rowToEdit[0].childNodes[2].innerHTML = imgUrlCell
+    rowToEdit[0].cells[2].className = 'imgUrl'
+
+    rowToEdit[0].childNodes[3].innerHTML = titleCell
+    rowToEdit[0].cells[3].className = 'title'
+    rowToEdit[0].cells[4].innerHTML = submitButton
 }
 
 editVideo = (index) => {
     newVidUrl = document.getElementById('newURL').value
+    console.log(newVidUrl)
+    newImgUrl = document.getElementById('imgUrl').value
+    console.log(newImgUrl)
     newVidTitle = document.getElementById('newTitle').value
+    
     let editedObj = {
         'url': newVidUrl,
+        'imgUrl': newImgUrl,
         'title': newVidTitle
     }
     fetchRequest(editedObj, index)

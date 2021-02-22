@@ -61,7 +61,7 @@ async function renderLatestVideos() {
 
         responseJsonObj = await httpResponse.json();
         console.log(responseJsonObj.data)
-
+        
         // if no error occurs -> try section will run
         try { 
             if (responseJsonObj.data) {
@@ -85,7 +85,7 @@ async function renderLatestVideos() {
 function renderVideo(id, src, title) {
 
     let card = `<div class="card" onclick="reply_click()">
-                        <div class="row _thumbnail text-center"><img id="${id}" src="${src}"></div>
+                        <div class="row _thumbnail text-center"><a href="display-video.html"><img id="${id}" src="${src}"></a></div>
                         <div class="row text-center"><h3>${title}</h3></div>
                         <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                             neque finibus, sit amet cursus est faucibus.</div>
@@ -95,7 +95,7 @@ function renderVideo(id, src, title) {
                         </div>
                         <span class="minutes">90 mins</span>
                 </div>`
-
+    
     // Generate event listener for each card -> get IDs
     // Event Handler will store the clicked video id in local storage
     
@@ -130,14 +130,14 @@ let anyoneNavBar = [
 
 let userNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
-    `<li><a href="#">Videos Dashboard</a></li>`,
+    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
     `<li><a href="edit-account.html">Edit Account Details</a></li>`,
     `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
 let adminNavBar = [
     `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
-    `<li><a href="#">Videos Dashboard</a></li>`,
+    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
     `<li><a href="edit-account.html">Edit Account Details</a></li>`,
     `<li><a href="add-video.html">Add Video</a></li>`,
     `<li><a href="edit-video.html">Edit Video</a></li>`,
