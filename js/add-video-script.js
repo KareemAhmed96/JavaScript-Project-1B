@@ -27,7 +27,14 @@ addVideo = () => {
         "title": videoTitle,
         "imgUrl": imgUrl
     }
-    fetchAdd(videoObj)
+    if(videoURL != "" && videoTitle != "" && imgUrl != "") {
+        fetchAdd(videoObj)
+        alert("Added Successfully")
+    } 
+    else {
+        alert("You must enter all input fields")
+        location.reload()
+    }
 }
 
 async function logout(){
