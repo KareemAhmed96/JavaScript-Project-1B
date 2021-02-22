@@ -80,7 +80,6 @@ async function getVideo() {
   let httpResponse = await fetch(`https://damp-headland-40243.herokuapp.com/http://anyservice.imassoft.com/3/videos/${videoId}`, requestOptions)
 
   responseJsonObj = await httpResponse.json();
-  //console.log(responseJsonObj.data.url)
   //window.localStorage.setItem("video-url", responseJsonObj.data.url)
   document.getElementById("my_video").setAttribute("src", responseJsonObj.data.url)
 }

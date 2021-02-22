@@ -52,7 +52,7 @@ async function renderLatestVideos() {
         redirect: 'follow'
     };
 
-    let videoCount = 10;  // Maximum number of recent videos
+    let videoCount = 4;  // Maximum number of recent videos
 
     for (let videoId = 0 ; videoId<videoCount ; videoId++) {
 
@@ -86,7 +86,7 @@ function renderVideo(id, src, title) {
 
     let card = `<div class="card" onclick="reply_click()">
                         <div class="row _thumbnail text-center"><a id="cardImg" href="display-video.html"><img id="${id}" src="${src}"></a></div>
-                        <div class="row text-center"><h3>${title}</h3></div>
+                        <div class="row text-center"><h3>${title.toUpperCase()}</h3></div>
                         <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                             neque finibus, sit amet cursus est faucibus.</div>
                         <div class="btn-group thumb-btn" role="group" aria-label="...">
