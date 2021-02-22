@@ -85,7 +85,7 @@ async function renderLatestVideos() {
 function renderVideo(id, src, title) {
 
     let card = `<div class="card" onclick="reply_click()">
-                        <div class="row _thumbnail text-center"><a href="display-video.html"><img id="${id}" src="${src}"></a></div>
+                        <div class="row _thumbnail text-center"><a id="cardImg" href="display-video.html"><img id="${id}" src="${src}"></a></div>
                         <div class="row text-center"><h3>${title}</h3></div>
                         <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                             neque finibus, sit amet cursus est faucibus.</div>
@@ -164,6 +164,7 @@ if (userStatus == null) {
 }
 else if (userStatus == "anyone") {        //should be changed to anyone after Logout
     currentUserNavBar = anyoneNavBar
+    //document.getElementById("cardImg").setAttribute("href", "")
 }
 else if (userStatus == "logged-in-user" && token != null) { //TEST
     currentUserNavBar = userNavBar
