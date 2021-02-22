@@ -25,12 +25,12 @@ async function login() {
   let responseJsonObj = await response.json()
 
   // Printing Response 
-  console.log(responseJsonObj)
+  console.log(typeof(responseJsonObj.data.userType),responseJsonObj.data.userType)
 
   // Check the Response 
   if (responseJsonObj.token) {
-    if (responseJsonObj.data.userType == "admin") {
-      // Successful Login >> Store Token In Locale Storage
+    if (responseJsonObj.data.userType == 'admin') {
+      // Successful Login >> Store Token In Local Storage
       console.log(responseJsonObj.token)
       window.localStorage.setItem("token", responseJsonObj.token)
       window.localStorage.setItem("user-status", "logged-in-admin")

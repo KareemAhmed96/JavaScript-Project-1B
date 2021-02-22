@@ -1,3 +1,7 @@
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: rgba(19, 0, 54, 0.87)
+}
+
 body{
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -38,29 +42,26 @@ body{
     }
 
 .form button {
-        font-family: "Roboto", sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #464e46;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: #FFFFFF;
-        font-size: 14px;
-        
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #464e46;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    
      
 }
 
 .form button:hover, .form button:active, .form button:focus {
-            background: #a2bea3;
+    background: #a2bea3;
 }
 
 
-
-
 .container {
-    position: relative;
-    z-index: 1;
-    max-width: 300px;
-    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
 }

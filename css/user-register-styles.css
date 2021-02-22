@@ -1,3 +1,7 @@
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: rgba(19, 0, 54, 0.87)
+}
+
 .Center {
     margin: 500 auto;
     margin-top: 20;

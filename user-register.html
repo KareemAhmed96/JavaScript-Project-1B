@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>User Register</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/user-register-styles.css">
 </head>
@@ -9,7 +10,8 @@
 <body">
 
     <!--NAV BAR START-->
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top"
+        style="background-color: rgba(25, 0, 70, 0.877);">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -20,7 +22,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Logo</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,7 +29,7 @@
                 <ul id="navbar-container" class="nav navbar-nav">
                     <li class=""><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
                     <li><a href="user-login.html">User Login</a></li>
-                    <li><a href="user-register.html">User Register</a></li>
+                    <li class="active"><a href="user-register.html">User Register</a></li>
                     <li><a href="admin-login.html">Admin Login</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
@@ -43,88 +44,88 @@
     </nav>
     <!--NAV BAR END-->
 
-    
+
     <br>
     <br>
     <div class="col-sm-12 text-center">
         <!-- Div Left-->
         <div class="col-sm-3"></div>
-<!--Form Start-->
+        <!--Form Start-->
         <!--Div Regidtration Form-->
 
         <div class="col-sm-6">
-        <!--Header-->
+            <!--Header-->
             <div class="page-header">
                 <h1>Register Account</h1>
             </div>
 
-             <!--user name-->
-          <div class="form-group">
+            <!--user name-->
+            <div class="form-group">
                 <label for="username">User Name</label>
                 <input type="text" class="form-control" id="username" placeholder="User Name">
             </div>
 
-           <!--First Name-->
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control" id="First-name" placeholder="First Name">
-          </div>
-
-           <!--Last name-->
-          <div class="form-group">
-            <label for="lname">Last name</label>
-            <input type="text" class="form-control" id="last-name" placeholder="Last Name">
-          </div>
-
-           <!--Password-->
-           <div class="form-group">
-            <label for="password">User Password</label>
-            <input class="form-control" type="password"  id="pass">
-            <br>
-            <p id="message" style="color:red"></p> <!-- Check Here If An Error Occur When Password Not Valid format-->
-          </div>
-
-          <!--Check Box Toggle for Showing Passsword-->
-          <div class="form-group">
-              <div class="form-control" > 
-                <label for="showpass">Show Password !</label>
-                <input type="checkbox" onclick="showHideToggle();">
-              </div>
-          </div>
-
-          <!--Date Of Birth-->
-          <div class="form-group">
-            <label for="dob">Date of Birth</label>
-            <input id="Birth-Date" placeholder="Birthday" type="date"  class="form-control">
-          </div>
-
-          <!--Phone Nymber-->
-          <div class="form-group">
-            <label for="Phone Number">Phone Number </label>
-            <input id="Phone-number" placeholder="Phone" class="form-control">
-          </div>
-
-          <!--Gender -->
+            <!--First Name-->
             <div class="form-group">
-                <label for="Gender">Gender </label>
-                    <div class="form-control">
-                        <input id="Gender" type="radio" name="gender" value="male"> Male
-                        <input id="Gender" type="radio" name="gender" value="female"> Female
-                    </div>
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" id="First-name" placeholder="First Name">
             </div>
 
-          <!--Submit Button-->
-     
-                <button class="btn btn-success" style="width: 300px;" onclick="verifyRegister()">Register</button>
+            <!--Last name-->
+            <div class="form-group">
+                <label for="lname">Last name</label>
+                <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+            </div>
+
+            <!--Password-->
+            <div class="form-group">
+                <label for="password">User Password</label>
+                <input class="form-control" type="password" id="pass">
+                <br>
+                <p id="message" style="color:red"></p>
+                <!-- Check Here If An Error Occur When Password Not Valid format-->
+            </div>
+
+            <!--Check Box Toggle for Showing Passsword-->
+            <div class="form-group">
+                <input type="checkbox" onclick="showHideToggle();">
+                <label for="showpass"><span style="color:grey; margin-left: 5px;">Show Password</span></label>
+            </div>
+            <br>
+
+            <!--Date Of Birth-->
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input id="Birth-Date" placeholder="Birthday" type="date" class="form-control">
+            </div>
+
+            <!--Phone Nymber-->
+            <div class="form-group">
+                <label for="Phone Number">Phone Number </label>
+                <input id="Phone-number" placeholder="Phone" class="form-control">
+            </div>
+
+            <!--Gender -->
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <br>
+                <input id="Gender" type="radio" name="gender" value="male"> Male
+                <input id="Gender" type="radio" name="gender" value="female"> Female
+            </div>
+            <br>
+
+            <!--Submit Button-->
+
+            <button class="btn btn-success" style="width: 300px;" onclick="verifyRegister()">Register</button>
 
         </div>
-      </div>
+    </div>
 
     <!--Form End -->
- 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="./js/user-register-script.js"></script>
-</body>
+    </body>
 
 </html>

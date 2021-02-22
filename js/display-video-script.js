@@ -173,7 +173,7 @@ function showControls(){
 }
 
 function hideControls(){
-  //controls.style.display="none";
+  controls.style.display="none";
   if(myVideo.paused) {
       //Show in overlay
       showPauseOverlayBtn()

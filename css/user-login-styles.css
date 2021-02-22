@@ -7,14 +7,18 @@ body{
 
 #websiteName {
     font-size: 50px;
+    margin-top: 50px;
 }
 
 .header{
     padding: 50px;
-    background-color: rgb(204, 204, 204);
+    background-color: rgba(204, 204, 204, 0.239);
     background-attachment: fixed;
     color: grey;
     font-size: 15px;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: rgba(19, 0, 54, 0.87)
 }
 
 .form {
@@ -55,7 +59,7 @@ body{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    background: rgba(25, 0, 70, 0.877);
     width: 100%;
     border: 0;
     padding: 15px;

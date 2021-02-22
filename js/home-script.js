@@ -1,3 +1,5 @@
+let link = "user-register.html"
+
 async function logout(){
     var myHeaders=new  Headers()
     myHeaders.append("Content-Type","application/json");
@@ -53,7 +55,7 @@ async function renderLatestVideos() {
     };
 
     let videoCount = 4;  // Maximum number of recent videos
-
+    
     for (let videoId = 0 ; videoId<videoCount ; videoId++) {
 
         let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/${videoId}`,
@@ -85,7 +87,7 @@ async function renderLatestVideos() {
 function renderVideo(id, src, title) {
 
     let card = `<div class="card" onclick="reply_click()">
-                        <div class="row _thumbnail text-center"><a id="cardImg" href="display-video.html"><img id="${id}" src="${src}"></a></div>
+                        <div class="row _thumbnail text-center"><a id="cardImg" onclick="redirect('${link}')"><img id="${id}" src="${src}"></a></div>
                         <div class="row text-center"><h3>${title.toUpperCase()}</h3></div>
                         <div class="row _text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper sapien non
                             neque finibus, sit amet cursus est faucibus.</div>
@@ -122,21 +124,21 @@ $('#cards_container').on('click', '.card', function(){
 
 /* Dynamic Navbar */
 let anyoneNavBar = [
-    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
     `<li><a href="user-login.html">User Login</a></li>`,
     `<li><a href="user-register.html">User Register</a></li>`,
     `<li><a href="admin-login.html">Admin Login</a></li>`
 ]
 
 let userNavBar = [
-    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
     `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
     `<li><a href="edit-account.html">Edit Account Details</a></li>`,
     `<li><a href="#" onclick="logout()">Logout</a></li>`
 ]
 
 let adminNavBar = [
-    `<li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
     `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
     `<li><a href="edit-account.html">Edit Account Details</a></li>`,
     `<li><a href="add-video.html">Add Video</a></li>`,
@@ -146,6 +148,10 @@ let adminNavBar = [
 
 //Check for token (logged in or not), will be handled in other pages to restrict access
 let token = window.localStorage.getItem("token")
+
+function redirect(link) {
+    window.location.replace(link);
+}
 
 /* user-status will be used later to view or un-view navbar elements*/
 /* user-status && token -> logged in */
@@ -164,14 +170,17 @@ if (userStatus == null) {
 }
 else if (userStatus == "anyone") {        //should be changed to anyone after Logout
     currentUserNavBar = anyoneNavBar
-    
-    //document.getElementById("cardImg").setAttribute("href", "")
+    //document.getElementById("cardImg").href = "user-register.html"
 }
 else if (userStatus == "logged-in-user" && token != null) { //TEST
     currentUserNavBar = userNavBar
-}
+    //document.getElementById("cardImg").href = "display-video.html"
+    link = "display-video.html"
+}   
 else if (userStatus == "logged-in-admin" && token != null) { //TEST
     currentUserNavBar = adminNavBar
+    //document.getElementById("cardImg").href = "display-video.html"
+    link = "display-video.html"
 }
 else {
     // this will happen when user refreshes while not logged in
