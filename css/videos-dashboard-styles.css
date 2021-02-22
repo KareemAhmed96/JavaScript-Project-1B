@@ -1,4 +1,54 @@
-div#video_player_box{ width:550px;height: 310px; background:#000; margin:10px auto; margin-bottom: 50px;}
-div#video_controls_bar{ background: #333; padding:10px; color:#CCC;}
-input#seekslider{ width:180px; }
-input#volumeslider{ width: 80px;}
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: white;
+}
+
+.navbar {
+    background-color: rgba(25, 0, 70, 0.877);
+}
+
+._content {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.card img {
+    width: 100%;
+    height: 500px;
+    box-shadow: 0 0 50px rgba(70, 70, 70, 0.5);
+}
+
+
+.thumb-btn {
+    margin-left: 17px;
+    margin-bottom: 15px;
+}
+
+.search-btn {
+    margin-right: 10px;
+    padding: 7px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(128, 128, 128, 0.507);
+    border-color: rgb(77, 77, 77);
+}
+
+.minutes {
+    margin-left: 120px;
+    color: grey;
+}
+
+.card {
+    border-style: none;
+    box-shadow: rgb(71, 71, 71);
+    margin-bottom: 20px;
+    width: 300px;
+    margin: 30px;
+}
+
