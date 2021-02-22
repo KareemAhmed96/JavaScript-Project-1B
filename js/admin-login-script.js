@@ -25,10 +25,10 @@ async function login() {
   let responseJsonObj = await response.json()
 
   // Printing Response 
-  console.log(typeof(responseJsonObj.data.userType),responseJsonObj.data.userType)
+  //console.log(typeof(responseJsonObj.data.userType),responseJsonObj.data.userType)
 
   // Check the Response 
-  if (responseJsonObj.token) {
+  if (responseJsonObj.token || !responseJsonObj.error) {
     if (responseJsonObj.data.userType == 'admin') {
       // Successful Login >> Store Token In Local Storage
       console.log(responseJsonObj.token)
@@ -36,6 +36,9 @@ async function login() {
       window.localStorage.setItem("user-status", "logged-in-admin")
       // Simulate an HTTP redirect:
       window.location.replace("home.html");
+    }
+    else{
+      alert("This account is not registered as an Admin")
     }
   }
   else {
