@@ -47,6 +47,10 @@ body {
     box-shadow: 0 0 30px rgb(0, 0, 0);
 }
 
+.slider-img {
+    opacity: 0.9;
+}
+
 .btns {
     font-size: 20px;
     padding: 20px;
