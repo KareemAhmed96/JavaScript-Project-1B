@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <title>User Login</title>
+        <link rel="stylesheet" href="css/admin-login-styles.css">
+        <title>Admin Login</title>
     </head>
 
     <body>
@@ -11,6 +12,7 @@
         <!--NAV BAR START-->
         <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
+                
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -26,10 +28,18 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul id="navbar-container" class="nav navbar-nav">
-                        <li class=""><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
-                        <li><a href="user-login.html">User Login</a></li>
-                        <li><a href="user-register.html">User Register</a></li>
-                        <li><a href="admin-login.html">Admin Login</a></li>
+                        <li class="">
+                            <a href="home.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a href="user-login.html">User Login</a>
+                        </li>
+                        <li>
+                            <a href="user-register.html">User Register</a>
+                        </li>
+                        <li>
+                            <a href="admin-login.html">Admin Login</a>
+                        </li>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="form-group">
@@ -46,17 +56,26 @@
             <br>
             <br>
             <br>
-            <h1>Welcome To Login Page</h1>
-            <label>Your Name</label><input type="txt" placeholder="Please Enter Your Name :" id="user">
-            <br>
-            <label>Confidential Password</label><input type="password" placeholder=" Please Enter Your Password :" id="pass">
-            <button onclick="login()">Login</button>
-            <button onclick="logout()">Logout</button>
-        </section>
+    <!-- Header Includes Logo and Slogan -->
+    <div class="text-center">
+        <h1 id="websiteName">Any Stream </h1>
+        <p id="slogan">Find Everything Here With one of The top 10 Streaming Websites </p>
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="js/admin-login-script.js"></script>
+    <!-- Body Includes Login Button and register link -->
+    <div class="container">
+            <div class="form">
+            <div class="input-container">
+                <input type="text" placeholder="username" id="user" />
+                <input type="password" placeholder="password" id="pass" />
+            </div>
+            <button onclick="login();">login as admin</button>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/user-login-script.js"></script>
+
     </body>
 
 </html>
