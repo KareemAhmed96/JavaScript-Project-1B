@@ -4,12 +4,17 @@ body{
     -moz-osx-font-smoothing: grayscale;
     
 }
+
+#websiteName {
+    font-size: 50px;
+}
+
 .header{
-    margin: 0px;
-    height: 20%;
-    background-color: #ccd0d652;
+    padding: 50px;
+    background-color: rgb(204, 204, 204);
     background-attachment: fixed;
-    color: white;
+    color: grey;
+    font-size: 15px;
 }
 
 .form {
@@ -18,51 +23,59 @@ body{
     background: rgb(228 211 211 / 15%);
     min-width: 400px;
     max-width: 800px;
-    margin: 0 auto 100px;
+    height: 400px;
+    margin: 100 auto 100px;
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+.input-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
 .form input {
-        font-family:sans-serif;
-        outline: 0;
-        background: #f2f2f2;
-        width: 100%;
-        border: 0;
-        margin: 0 0 15px;
-        padding: 15px;
-        box-sizing: border-box;
-        font-size: 14px;
+    font-family:sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
     }
 
+::placeholder {
+    color: rgb(195, 195, 195);
+}
+
 .form button {
-        font-family: "Roboto", sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #4CAF50;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: #FFFFFF;
-        font-size: 14px;
-        
-     
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
 }
 
 .form button:hover, .form button:active, .form button:focus {
-            background: #43A047;
+    background: #43A047;
 }
 
 .form .message {
-        margin: 15px 0 0;
-        color: #b3b3b3;
-        font-size: 20px;
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 20px;
 }
 
 .form .message a {
-            color: #4CAF50;
-            text-decoration: none;
+    color: #4CAF50;
+    text-decoration: none;
 }
 
 .form .register-form {
@@ -70,18 +83,16 @@ body{
 }
 
 .container {
-    position: relative;
-    z-index: 1;
-    max-width: 300px;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .footer{
     position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #286090;
-  color: #d9edf7;
-  text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #286090;
+    color: #d9edf7;
+    text-align: center;
 }

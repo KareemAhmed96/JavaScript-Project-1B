@@ -1,15 +1,13 @@
 <html lang="en-us">
-    <head>
-        <meta charset="utf-8"> 
-        <title>User Login</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/user-login-styles.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/user-login-styles.css">
+</head>
+
+<body>
 
     <!--NAV BAR START-->
     <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top">
@@ -46,29 +44,35 @@
     </nav>
     <!--NAV BAR END-->
 
-        <!-- Header Includes Logo and Slogan -->
-        <div class="jumbotron text-center header">
-            <h1 id="websiteName">Any Stream  </h1>
-            <p  id="slogan">Find Everything Here With one of The top 10 Streaming Websites </p> 
-        </div>
+    <!-- Header Includes Logo and Slogan -->
+    <div class="text-center header">
+        <h1 id="websiteName">Any Stream </h1>
+        <p id="slogan">Find Everything Here With one of The top 10 Streaming Websites </p>
+    </div>
 
-          <!-- Body Includes Login Button and register link -->
-          <div class="container">
-          <div class="form">
+    <!-- Body Includes Login Button and register link -->
+    <div class="container">
+        <div class="form">
+            <div class="input-container">
                 <input type="text" placeholder="username" id="user" />
                 <input type="password" placeholder="password" id="pass" />
-                <button onclick="login();">login</button>
-                <p class="message">Not registered? >> <a href="user-register.html">Create</a> an account</a></p>
             </div>
-            <h3 id="msg" style="color:aqua"></h3>
-            </div>
-         <!-- Footer Includes Terms ,Contacts and About  -->
-        <div class="footer">
-            <span>Contact Us </span>
-            <span>Terms </span>
-            <span>About Us</span>
+            <button onclick="login();">login</button>
+            <p class="message">Not Registered? <a href="user-register.html">Create an account</a></p>
         </div>
+        <h3 id="msg" style="color:aqua"></h3>
+    </div>
 
-        <script src="js/user-login-script.js"></script>
-    </body>
+    <!-- Footer Includes Terms ,Contacts and About  -->
+    <div class="footer">
+        <span>Contact Us </span>
+        <span>Terms </span>
+        <span>About Us</span>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/user-login-script.js"></script>
+</body>
+
 </html>
