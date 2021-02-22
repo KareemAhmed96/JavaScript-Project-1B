@@ -21,9 +21,11 @@ fetchAdd = async (videoObj) => {
 addVideo = () => {
     videoURL = document.getElementById('url').value
     videoTitle = document.getElementById('title').value
+    imgUrl = document.getElementById('imgUrl').value
     videoObj= {
         "url": videoURL,
-        "title": videoTitle
+        "title": videoTitle,
+        "imgUrl": imgUrl
     }
     fetchAdd(videoObj)
 }
