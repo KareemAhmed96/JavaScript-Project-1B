@@ -164,6 +164,7 @@ if (userStatus == null) {
 }
 else if (userStatus == "anyone") {        //should be changed to anyone after Logout
     currentUserNavBar = anyoneNavBar
+    
     //document.getElementById("cardImg").setAttribute("href", "")
 }
 else if (userStatus == "logged-in-user" && token != null) { //TEST
