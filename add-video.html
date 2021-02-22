@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add video</title>
     <link href="css/add-video-styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -23,7 +23,8 @@
 
 <body>
     <!--NAV BAR START-->
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse navbar-fixed-top"
+    style="background-color: rgba(25, 0, 70, 0.877);">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -43,7 +44,7 @@
                     <li class=""><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
                     <li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
                     <li><a href="edit-account.html">Edit Account Details</a></li>
-                    <li><a href="add-video.html">Add Video</a></li>
+                    <li class="active"><a href="add-video.html">Add Video</a></li>
                     <li><a href="edit-video.html">Edit Video</a></li>
                     <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>
@@ -64,24 +65,43 @@
     <br>
     <br>
     <br>
-    <div class="card w-50 border-info  mb-3"
-        style="margin-left: auto; margin-right: auto; text-align: center; margin-top: auto; margin-bottom: auto;">
-        <div class="card-header" style="font-family: cursive;">Add A new video</div>
-        <div class="card-body">
-            <h5 class="card-title" style="font-family: cursive;">Video Details</h5>
-            <div>
-                <input id="url" type="text" placeholder="Video url">
-                <input id="title" type="text" placeholder="Video Title">
-            </div>
-            <div>
-                <button type="button" class="btn btn-outline-info" style="margin:20px; font-family: cursive;"
-                    onclick="addVideo()">submit</button>
-            </div>
-        </div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="js/add-video-script.js"></script>
 </body>
+
+
+
+<div class="col-sm-12 text-center">
+    <div class="col-sm-3"></div>
+
+    <!-- Form start here -->
+    <div class="col-sm-6" style="background-color: black;">
+      <div class="page-header">
+        <h1 style="color: white;">Add a new video</h1>
+        <h3 class="card-title" style="color: white;">Video Details</h3>
+      </div>
+    <div style="background-color: white;">
+      <div class="form-group">
+        <label for="url">Enter video URL</label><br>
+        <input id="url" type="text" placeholder="Video url">
+      </div>
+      <div class="form-group">
+        <label for="imgUrl">Enter image URL</label><br>
+        <input id="imgUrl" type="text" placeholder="Video url">
+      </div>
+      <div class="form-group">
+        <label for="title">Enter video title</label><br>
+        <input id="title" type="text" placeholder="Video Title">
+      </div>
+      <div>
+        <button type="button" class="btn btn-success" onclick="addVideo()">Submit</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <br>
+    <br>
+
 </html>
