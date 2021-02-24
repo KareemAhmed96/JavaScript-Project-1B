@@ -1,4 +1,5 @@
-let token = window.localStorage.getItem("token")
+
+let dbid = window.localStorage.getItem("dbid")
 
 async function logout(){
   var myHeaders=new  Headers()
@@ -11,7 +12,7 @@ async function logout(){
       headers:myHeaders,
       redirect:'follow'
   }
-  response=await  fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/logout",requestOptions)
+  response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/logout`, requestOptions)
   responseObj = await response.json()
   console.log(responseObj)
   //Remove token
@@ -33,7 +34,7 @@ async function fetchAllVideos() {
     redirect: 'follow'
   };
 
-  let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/`, requestOptions);
+  let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/`, requestOptions);
   responseJsonObj = await httpResponse.json();
 
   console.log(responseJsonObj)
@@ -76,7 +77,7 @@ let userNavBar = [
   `<li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>`,
   `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
   `<li><a href="edit-account.html">Edit Account Details</a></li>`,
-  `<li><a href="home.html" onclick="logout()">Logout</a></li>`
+  `<li><a onclick="logout()">Logout</a></li>`
 ]
 
 let adminNavBar = [
@@ -85,9 +86,10 @@ let adminNavBar = [
   `<li><a href="edit-account.html">Edit Account Details</a></li>`,
   `<li><a href="add-video.html">Add Video</a></li>`,
   `<li><a href="edit-video.html">Edit Video</a></li>`,
-  `<li><a href="home.html" onclick="logout()">Logout</a></li>`
+  `<li><a onclick="logout()">Logout</a></li>`
 ]
 
+let token = window.localStorage.getItem("token")
 let userStatus = window.localStorage.getItem("user-status")
 
 if (userStatus == "logged-in-user" && token != null) { //TEST

@@ -1,4 +1,7 @@
 //aLy O.o
+
+let dbid = window.localStorage.getItem("dbid")
+
 var userInput = {};
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -35,7 +38,7 @@ async function verifyRegister() {
 
         await userDelete(local_storage_user_id) //user_ID to be dynamic
 
-        const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/3/register';
+        const url = `https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/${dbid}/register`;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -72,7 +75,7 @@ async function userGetOne(user_ID) {
         redirect: 'follow'
     };
     // Getting API Response 
-    let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/users/${user_ID}`, requestOptions);
+    let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/users/${user_ID}`, requestOptions);
     // Cast Response into JSON Object 
     let responseJsonObj = await response.json()
     // Printing Response 
@@ -89,7 +92,7 @@ async function userDelete(user_ID) {
         redirect: 'follow'
     };
     // Getting API Response 
-    let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/users/${user_ID}`, requestOptions);
+    let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/users/${user_ID}`, requestOptions);
     // Cast Response into JSON Object 
     let responseJsonObj = await response.json()
     // Printing Response 
@@ -112,7 +115,7 @@ async function logout(){
         headers:myHeaders,
         redirect:'follow'
     }
-    response=await  fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/logout",requestOptions)
+    response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/logout`, requestOptions)
     responseObj = await response.json()
     console.log(responseObj)
     //Remove token

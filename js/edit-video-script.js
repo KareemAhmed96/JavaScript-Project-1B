@@ -1,4 +1,26 @@
 token = localStorage.getItem('token');
+let dbid = window.localStorage.getItem("dbid")
+
+async function logout(){
+    var myHeaders=new  Headers()
+    myHeaders.append("Content-Type","application/json");
+    let token=localStorage.getItem("token")
+    myHeaders.append("token", token)
+
+    var requestOptions={
+        method:'GET',
+        headers:myHeaders,
+        redirect:'follow'
+    }
+    response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/logout`,requestOptions)
+    responseObj = await response.json()
+    console.log(responseObj)
+    //Remove token
+    window.localStorage.removeItem("token")
+    //Change status to anyone
+    window.localStorage.setItem("user-status", "anyone")
+    window.location.replace("home.html");
+}
 
 let getVideos = async() => {
 
@@ -16,7 +38,7 @@ let getVideos = async() => {
         headers: myHeaders,
         redirect: 'follow'
     };
-    let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/`,
+    let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/`,
         requestOptions);
 
     responseJsonObj = await httpResponse.json();
@@ -104,8 +126,8 @@ fetchRequest = async (videoObj, index) => {
         redirect: 'follow'
     };
     console.log(typeof(index))
-    let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/${index}`
+    let url = `https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/${index}`
     let httpResponse = await fetch(url, requestOptions);
     responseJsonObj = await httpResponse.json();
-    //location.reload()
+    location.reload()
 }

@@ -1,3 +1,5 @@
+let dbid = window.localStorage.getItem("dbid")
+
 async function login() {
   // Headers Creation 
   var myHeaders = new Headers();
@@ -19,7 +21,7 @@ async function login() {
   };
 
   // Getting API Response 
-  let response = await fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/login", requestOptions);
+  let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/login`, requestOptions);
 
   // Cast Response into JSON Object 
   let responseJsonObj = await response.json()

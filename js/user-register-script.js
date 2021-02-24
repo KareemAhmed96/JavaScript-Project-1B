@@ -1,3 +1,5 @@
+let dbid = window.localStorage.getItem("dbid")
+
 function showHideToggle() {
     var x = document.getElementById("pass");
     if (x.type === "password") {
@@ -23,7 +25,7 @@ async function verifyRegister() {
     let result = validate(userData);
     if (result == true) {
 
-        const url = 'https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/3/register';
+        const url = `https://whispering-journey-12121.herokuapp.com/http://anyservice.imassoft.com/${dbid}/register`;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 

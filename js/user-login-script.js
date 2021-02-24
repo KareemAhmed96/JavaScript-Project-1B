@@ -1,3 +1,5 @@
+let dbid = window.localStorage.getItem("dbid")
+
 // Asynchronous  Function Login Validates the User Name and Password
 async function login() {
   // Headers Creation 
@@ -20,7 +22,7 @@ async function login() {
   };
 
   // Getting API Response 
-  let response = await fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/login", requestOptions);
+  let response = await fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/login`, requestOptions);
 
   // Cast Response into JSON Object 
   let responseJsonObj = await response.json()

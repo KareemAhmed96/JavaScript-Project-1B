@@ -1,4 +1,76 @@
 let link = "user-register.html"
+let dbid = 96
+
+window.localStorage.setItem("dbid", dbid)
+
+//Get user-status from local storage
+let userStatus = window.localStorage.getItem("user-status")
+console.log(userStatus)
+
+/* FIRST CODE TO RUN BELOW HERE */
+/* **************************** */
+
+/* Dynamic Navbar */
+let anyoneNavBar = [
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
+    `<li><a href="user-login.html">User Login</a></li>`,
+    `<li><a href="user-register.html">User Register</a></li>`,
+    `<li><a href="admin-login.html">Admin Login</a></li>`
+]
+
+let userNavBar = [
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
+    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
+    `<li><a href="#" onclick="logout()">Logout</a></li>`
+]
+
+let adminNavBar = [
+    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
+    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
+    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
+    `<li><a href="add-video.html">Add Video</a></li>`,
+    `<li><a href="edit-video.html">Edit Video</a></li>`,
+    `<li><a href="#" onclick="logout()">Logout</a></li>`
+]
+
+//Check for token (logged in or not), will be handled in other pages to restrict access
+let token = window.localStorage.getItem("token")
+
+/* user-status will be used later to view or un-view navbar elements*/
+/* user-status && token -> logged in */
+
+//Current user navbar
+let currentUserNavBar = anyoneNavBar
+
+//check and assign
+if (userStatus == null) {
+    //create user-status in local storage and add "anyone" to it
+    window.localStorage.setItem("user-status", "anyone")
+}
+else if (userStatus == "anyone") {        //should be changed to anyone after Logout
+    currentUserNavBar = anyoneNavBar
+    //document.getElementById("cardImg").href = "user-register.html"
+}
+else if (userStatus == "logged-in-user" && token != null) { //TEST
+    currentUserNavBar = userNavBar
+    //document.getElementById("cardImg").href = "display-video.html"
+    link = "display-video.html"
+}   
+else if (userStatus == "logged-in-admin" && token != null) { //TEST
+    currentUserNavBar = adminNavBar
+    //document.getElementById("cardImg").href = "display-video.html"
+    link = "display-video.html"
+}
+else {
+    // this will happen when user refreshes while not logged in
+    userStatus = window.localStorage.getItem("user-status")
+    console.log(userStatus)
+}
+
+for(let i=0 ; i<currentUserNavBar.length ; i++) {
+    document.getElementById("navbar-container").innerHTML += currentUserNavBar[i]
+}
 
 async function logout(){
     var myHeaders=new  Headers()
@@ -11,7 +83,7 @@ async function logout(){
         headers:myHeaders,
         redirect:'follow'
     }
-    response=await  fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/logout",requestOptions)
+    response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/logout`,requestOptions)
     responseObj = await response.json()
     console.log(responseObj)
     //Remove token
@@ -25,14 +97,14 @@ async function logout(){
 async function login() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({ "username": "kareemadmindb3", "password": "1234" });
+    var raw = JSON.stringify({ "username": "sawyuser", "password": "sawyAhmed123" });
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
     };
-    let response = await fetch("https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/login", requestOptions);
+    let response = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/${dbid}/login`, requestOptions);
     let responseJsonObj = await response.json()
     console.log(responseJsonObj.token)
 
@@ -42,11 +114,16 @@ async function login() {
 /* Get latest videos */
 async function renderLatestVideos() {
 
-    let dynamic_token = await login()
+    if(userStatus == 'anyone') {
+        token = await login()
+    }
+    else {
+        token = window.localStorage.getItem("token")
+    }
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("token", dynamic_token);
+    myHeaders.append("token", token);
 
     var requestOptions = {
         method: 'GET',
@@ -58,7 +135,7 @@ async function renderLatestVideos() {
     
     for (let videoId = 0 ; videoId<videoCount ; videoId++) {
 
-        let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/3/videos/${videoId}`,
+        let httpResponse = await fetch(`https://nameless-dusk-81295.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/${videoId}`,
             requestOptions);
 
         responseJsonObj = await httpResponse.json();
@@ -119,75 +196,6 @@ $('#cards_container').on('click', '.card', function(){
     window.localStorage.setItem("clicked-video", video_id)
 });
 
-/* FIRST CODE TO RUN BELOW HERE */
-/* **************************** */
-
-/* Dynamic Navbar */
-let anyoneNavBar = [
-    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`, 
-    `<li><a href="user-login.html">User Login</a></li>`,
-    `<li><a href="user-register.html">User Register</a></li>`,
-    `<li><a href="admin-login.html">Admin Login</a></li>`
-]
-
-let userNavBar = [
-    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
-    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
-    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
-    `<li><a href="#" onclick="logout()">Logout</a></li>`
-]
-
-let adminNavBar = [
-    `<li><a href="#">Home <span class="sr-only">(current)</span></a></li>`,
-    `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
-    `<li><a href="edit-account.html">Edit Account Details</a></li>`,
-    `<li><a href="add-video.html">Add Video</a></li>`,
-    `<li><a href="edit-video.html">Edit Video</a></li>`,
-    `<li><a href="#" onclick="logout()">Logout</a></li>`
-]
-
-//Check for token (logged in or not), will be handled in other pages to restrict access
-let token = window.localStorage.getItem("token")
-
 function redirect(link) {
     window.location.replace(link);
-}
-
-/* user-status will be used later to view or un-view navbar elements*/
-/* user-status && token -> logged in */
-
-//Get user-status from local storage
-let userStatus = window.localStorage.getItem("user-status")
-console.log(userStatus)
-
-//Current user navbar
-let currentUserNavBar = anyoneNavBar
-
-//check and assign
-if (userStatus == null) {
-    //create user-status in local storage and add "anyone" to it
-    window.localStorage.setItem("user-status", "anyone")
-}
-else if (userStatus == "anyone") {        //should be changed to anyone after Logout
-    currentUserNavBar = anyoneNavBar
-    //document.getElementById("cardImg").href = "user-register.html"
-}
-else if (userStatus == "logged-in-user" && token != null) { //TEST
-    currentUserNavBar = userNavBar
-    //document.getElementById("cardImg").href = "display-video.html"
-    link = "display-video.html"
-}   
-else if (userStatus == "logged-in-admin" && token != null) { //TEST
-    currentUserNavBar = adminNavBar
-    //document.getElementById("cardImg").href = "display-video.html"
-    link = "display-video.html"
-}
-else {
-    // this will happen when user refreshes while not logged in
-    userStatus = window.localStorage.getItem("user-status")
-    console.log(userStatus)
-}
-
-for(let i=0 ; i<currentUserNavBar.length ; i++) {
-    document.getElementById("navbar-container").innerHTML += currentUserNavBar[i]
 }

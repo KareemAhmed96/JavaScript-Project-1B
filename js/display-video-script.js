@@ -1,4 +1,5 @@
 let token = window.localStorage.getItem("token")
+let dbid = window.localStorage.getItem("dbid")
 
 async function logout(){
   var myHeaders=new  Headers()
@@ -11,7 +12,7 @@ async function logout(){
       headers:myHeaders,
       redirect:'follow'
   }
-  response=await  fetch("https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/3/logout",requestOptions)
+  response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/logout`, requestOptions)
   responseObj = await response.json()
   console.log(responseObj)
   //Remove token
@@ -203,7 +204,7 @@ async function getVideo() {
   };
 
   let videoId = window.localStorage.getItem("clicked-video")
-  let httpResponse = await fetch(`https://damp-headland-40243.herokuapp.com/http://anyservice.imassoft.com/3/videos/${videoId}`, requestOptions)
+  let httpResponse = await fetch(`https://damp-headland-40243.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/${videoId}`, requestOptions)
 
   responseJsonObj = await httpResponse.json();
   //window.localStorage.setItem("video-url", responseJsonObj.data.url)
