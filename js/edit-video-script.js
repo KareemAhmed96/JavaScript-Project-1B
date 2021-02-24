@@ -22,6 +22,24 @@ async function logout(){
     window.location.replace("home.html");
 }
 
+async function deleteVideo(id){
+    var myHeaders=new  Headers()
+    myHeaders.append("Content-Type","application/json");
+    let token=localStorage.getItem("token")
+    myHeaders.append("token", token)
+
+    var requestOptions={
+        method:'DELETE',
+        headers:myHeaders,
+        redirect:'follow'
+    }
+    response=await  fetch(`https://desolate-ocean-66919.herokuapp.com/http://anyservice.imassoft.com/${dbid}/videos/${id}`,requestOptions)
+    responseObj = await response.json()
+    console.log(responseObj)
+    alert("Deleted Successfully")
+    location.reload()
+}
+
 let getVideos = async() => {
 
     var myHeaders = new Headers();
@@ -57,19 +75,26 @@ displayContent = (videoObj) => {
         let imgUrl = row.insertCell(2)
         let vidTitle = row.insertCell(3)
         let vidAction = row.insertCell(4)
+        let delAction = row.insertCell(5)
         
-
         vidURL.innerHTML = element.url.toString()
         imgUrl.innerHTML = element.imgUrl
         vidTitle.innerHTML = element.title
         vidIndex.innerHTML = row.rowIndex
 
-        let aTag = document.createElement('a');
+        let aTag = document.createElement('button');
         aTag.setAttribute('type', "button");
         aTag.innerText = "Edit";
         aTag.style.textDecoration = "none"
         vidAction.appendChild(aTag);
         vidAction.addEventListener('click', () => { convert(element.id) })
+
+        let bTag = document.createElement('button');
+        bTag.setAttribute('type', "button");
+        bTag.innerText = "Delete";
+        bTag.style.textDecoration = "none"
+        delAction.appendChild(bTag);
+        delAction.addEventListener('click', () => { delVideo(element.id) })
     });
 }
 
@@ -89,6 +114,10 @@ convert = (index) => {
     rowToEdit[0].childNodes[3].innerHTML = titleCell
     rowToEdit[0].cells[3].className = 'title'
     rowToEdit[0].cells[4].innerHTML = submitButton
+}
+
+delVideo = (index) => {
+    deleteVideo(index)
 }
 
 editVideo = (index) => {
