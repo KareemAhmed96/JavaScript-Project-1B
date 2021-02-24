@@ -114,7 +114,7 @@ async function login() {
 /* Get latest videos */
 async function renderLatestVideos() {
 
-    if(userStatus == 'anyone') {
+    if(userStatus == 'anyone' || userStatus == null) {
         token = await login()
     }
     else {
