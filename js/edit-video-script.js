@@ -19,7 +19,7 @@ async function logout(){
     window.localStorage.removeItem("token")
     //Change status to anyone
     window.localStorage.setItem("user-status", "anyone")
-    window.location.replace("home.html");
+    window.location.replace("index.html");
 }
 
 async function deleteVideo(id){

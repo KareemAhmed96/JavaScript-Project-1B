@@ -19,7 +19,7 @@ async function logout(){
   window.localStorage.removeItem("token")
   //Change status to anyone
   window.localStorage.setItem("user-status", "anyone")
-  window.location.replace("home.html");
+  window.location.replace("index.html");
 }
 
 async function fetchAllVideos() {
@@ -74,14 +74,14 @@ $('#cards_container').on('click', '.card', function(){
 });
 
 let userNavBar = [
-  `<li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>`,
+  `<li><a href="index.html">Home <span class="sr-only">(current)</span></a></li>`,
   `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
   `<li><a href="edit-account.html">Edit Account Details</a></li>`,
   `<li><a onclick="logout()">Logout</a></li>`
 ]
 
 let adminNavBar = [
-  `<li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>`,
+  `<li><a href="index.html">Home <span class="sr-only">(current)</span></a></li>`,
   `<li><a href="videos-dashboard.html">Videos Dashboard</a></li>`,
   `<li><a href="edit-account.html">Edit Account Details</a></li>`,
   `<li><a href="add-video.html">Add Video</a></li>`,

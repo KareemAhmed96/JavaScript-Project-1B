@@ -37,7 +37,7 @@ async function login() {
       window.localStorage.setItem("token", responseJsonObj.token)
       window.localStorage.setItem("user-status", "logged-in-admin")
       // Simulate an HTTP redirect:
-      window.location.replace("home.html");
+      window.location.replace("index.html");
     }
     else{
       alert("This account is not registered as an Admin")

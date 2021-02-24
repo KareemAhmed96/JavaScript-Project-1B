@@ -39,10 +39,10 @@ async function login() {
     window.localStorage.setItem("user-status", "logged-in-user")
     window.localStorage.setItem("user_id", responseJsonObj.data.id)
     // Simulate a mouse click:
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 
     // Simulate an HTTP redirect:
-    // window.location.replace("home.html");
+    // window.location.replace("index.html");
   }
   else {
     // Not Authorized User Alert will Be Raised 

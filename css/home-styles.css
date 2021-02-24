@@ -20,7 +20,7 @@ body {
     color: white;
     box-shadow: 0 0 30px rgb(49, 49, 49);
     border-style: none;
-    padding: 1.2em;
+    padding: 1em;
     padding-left: 1.2em;
     padding-right: 1.2em;
     margin-left: 7px;
@@ -50,7 +50,7 @@ body {
     background-color: rgba(128, 128, 128, 0.774);
     border-radius: 20px;
     padding: 50px;
-    top: 28%;
+    top: 27%;
     bottom: auto;
     font-size: 3vw;
     box-shadow: 0 0 30px rgb(0, 0, 0);
